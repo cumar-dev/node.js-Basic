@@ -1,0 +1,15 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "nodejs for begginers",
+  "license": "ISC",
+  "author": "omarDev",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "Nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
