@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-
+app.use(express.json());
 const users = [
 [
 {
@@ -536,13 +536,47 @@ const users = [
 }
 ]
 ];
-// const users = "https://jsonplaceholder.typicode.com/users";
+
+const userList = [
+    {
+    id: 1,
+    name: "Ayaan Mohamed",
+    email: "ayaan@gmail.com",
+    age: 22
+  },
+  {
+    id: 2,
+    name: "Fatima Ali",
+    email: "fatima@gmail.com",
+    age: 25
+  },
+]
+
 app.get("/users", (req, res)=> {
 res.json(users);
 })
 
 app.get("/users", (req, res)=> {
 res.send("Hello world");
+})
+
+app.get("/userList", (req,res)=> {
+    res.json(userList);
+})
+app.post("/userList", (req, res) => {
+    const usersData = req.body;
+     if (!usersData.name || !usersData.email || !usersData.age) {
+    return res.status(400).send("Please provide name, email, and age");
+  }
+   
+  const newUserList = {
+    id: userList.length + 1,
+    name: usersData.name,
+    email: usersData.email,
+    age: usersData.age
+  }
+userList.push(newUserList);
+res.status(201).json(newUserList);
 })
 app.listen(port, ()=> {
     console.log(`server is running on http://localhost:${port}`)
